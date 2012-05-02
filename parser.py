@@ -49,8 +49,11 @@ class Parser(object):
         
     def parsePage(self):
         
-        content = dict()
+        if not self.page:
+            return None
+        
         doc = parseString(self.page)
+        content = dict()
 
         for reg in doc.getElementsByTagName("tr"):
             values = list()
