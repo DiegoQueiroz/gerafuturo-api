@@ -67,10 +67,13 @@ class Parser(object):
                 except:
                     pass
                 
-                try:
-                    values[1] = float(values[1].replace(',','.'))
-                except:
-                    pass
+                # Try to convert all data to float
+                # Keep it as string if it isn't possible
+                for i in range(1,len(values)):
+                    try:
+                        values[i] = float(values[i].replace('.','').replace(',','.'))
+                    except:
+                        pass
                 
                 content[values[0]] = values[1:] 
             else:
@@ -78,18 +81,19 @@ class Parser(object):
                 pass
         
         return content
+    
         
-        
+if __name__ == '__main__':
 
-x = Parser()
+    x = Parser()
 
-params = dict()
-params['id_fundo_clube'] = '1'
-params['busca']          = 's'
-params['dataInicio']     = '01/01/1900'
-params['dataFim']        = '30/04/2012'
+    params = dict()
+    params['id_fundo_clube'] = '1'
+    params['busca']          = 's'
+    params['dataInicio']     = '01/01/1900'
+    params['dataFim']        = '30/04/2012'
 
-print(x.getPage('produtos.resultado_historico_cotas',params))
-print(x.parsePage())
+    print(x.getPage('produtos.resultado_historico_cotas',params))
+    print(x.parsePage())
 
 
