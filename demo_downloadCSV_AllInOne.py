@@ -20,7 +20,7 @@ if __name__ == '__main__':
 
     with open('FUNDOS.csv','wb') as f:
 
-        arqcsv = csvwriter(f, delimiter=';',quotechar='"')
+        arqcsv = csvwriter(f, delimiter=csv_delimiter,quotechar=quote_char)
 
         for idfundo in Fundo.FUNDS:
         

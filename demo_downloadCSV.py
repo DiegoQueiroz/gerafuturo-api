@@ -27,7 +27,7 @@ if __name__ == '__main__':
         data = sorted(data,key=lambda x: x[0])
         
         with open(idfundo.replace(' ','_') + '.csv','wb') as f:
-            arqcsv = csvwriter(f, delimiter=';',quotechar='"')
+            arqcsv = csvwriter(f, delimiter=csv_delimiter,quotechar=quote_char)
             arqcsv.writerows(data)
             
         print("Download %s successful!" % ( idfundo ))
