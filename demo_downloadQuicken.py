@@ -4,7 +4,7 @@ Created on May 6, 2012
 @author: "DiegoQueiroz"
 '''
 
-from fundo import Fundo
+from GF_fundo import Fundo
 from datetime import date, timedelta
 from csv import writer as csvwriter
 

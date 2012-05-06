@@ -4,7 +4,7 @@ Created on May 1, 2012
 @author: DiegoQueiroz
 '''
 
-from parser import Parser
+from GF_parser import Parser
 #from datetime import date
 
 class Fundo(object):
