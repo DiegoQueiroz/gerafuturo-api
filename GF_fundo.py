@@ -55,9 +55,9 @@ class Fundo(object):
         
 
     def updateToday(self):
+
+        if len(self.prices) >= 2:        
+            ids = sorted(self.prices.keys(),reverse=True)[:2]
         
-        ids = sorted(self.prices.keys(),reverse=True)[:2]
-        
-        self.prices.setdefault(date.today(),self.prices[ids[0]])
-        self.prices.setdefault(date.today() - timedelta(days=1),self.prices[ids[1]])
-        
+            self.prices[date.today()] = self.prices[ids[0]]
+            self.prices[date.today() - timedelta(days=1)] = self.prices[ids[1]]
