@@ -5,7 +5,7 @@ Created on May 1, 2012
 '''
 
 from GF_parser import Parser
-#from datetime import date
+from datetime import date, timedelta
 
 class Fundo(object):
     '''
@@ -53,5 +53,11 @@ class Fundo(object):
         
         self.prices.update(prices)
         
+
+    def updateToday(self):
         
+        ids = sorted(self.prices.keys(),reverse=True)[:2]
+        
+        self.prices.setdefault(date.today(),self.prices[ids[0]])
+        self.prices.setdefault(date.today() - timedelta(days=1),self.prices[ids[1]])
         
