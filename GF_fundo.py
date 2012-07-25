@@ -15,8 +15,8 @@ class Fundo(object):
     # Funds constant IDs
     FUNDS = {
         'FUNDO GERACAO FIA'                       : 1      ,
-        'FUNDO GF FGTS PETROBRAS'                 : 11     ,
-        'FUNDO GF FGTS VALE DO RIO DOCE'          : 12     ,
+        #'FUNDO GF FGTS PETROBRAS'                 : 11     , #121497
+        #'FUNDO GF FGTS VALE DO RIO DOCE'          : 12     , #123724
         'FUNDO GF DUQUE DE CAXIAS'                : 23800  ,
         'FUNDO GERACAO PROGRAMADO FIA'            : 152384 ,
         'FUNDO GF FIA MENINAS IRADAS'             : 156878 ,
