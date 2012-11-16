@@ -1,8 +1,4 @@
-'''
-Created on May 4, 2012
-
-@author: "DiegoQueiroz"
-'''
+# -*- coding: utf-8 -*-
 
 from GF_fundo import Fundo
 from datetime import date, timedelta

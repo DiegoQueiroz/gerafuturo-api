@@ -1,13 +1,9 @@
 # -*- coding: utf-8 -*-
-'''
-Created on May 1, 2012
-
-@author: "DiegoQueiroz"
-'''
 
 from xml.dom.minidom import parseString
 from datetime import datetime
-import urllib
+from urllib2 import urlopen
+from urllib import urlencode
 
 class Parser(object):
     '''
@@ -25,7 +21,7 @@ class Parser(object):
     def __buildURL(self,page,params):
         # 'show' must always be the first parameter
         
-        strparams = urllib.urlencode(params)
+        strparams = urlencode(params)
         return self.portalurl + '?show=' + page + '&' + strparams
         
         
@@ -34,7 +30,7 @@ class Parser(object):
         url = self.__buildURL(page,params)
         
         # Download URL, exception must propagate
-        pageref = urllib.urlopen( url )
+        pageref = urlopen( url )
         self.page = pageref.read()
         
         # Get encoding and decode page

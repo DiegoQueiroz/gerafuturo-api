@@ -1,8 +1,4 @@
-'''
-Created on May 1, 2012
-
-@author: DiegoQueiroz
-'''
+# -*- coding: utf-8 -*-
 
 from GF_parser import Parser
 from datetime import date, timedelta
