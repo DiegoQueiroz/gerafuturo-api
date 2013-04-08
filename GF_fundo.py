@@ -10,9 +10,9 @@ class Fundo(object):
     
     # Funds constant IDs
     FUNDS = {
-        'FUNDO GERACAO FIA'                       : 1      ,
-        #'FUNDO GF FGTS PETROBRAS'                 : 11     , #121497
-        #'FUNDO GF FGTS VALE DO RIO DOCE'          : 12     , #123724
+        'FUNDO GERACAO FIA'                       : 102905 , #102905 (antigo: 1)
+        'FUNDO GF FGTS PETROBRAS'                 : 121497 , #121497 (antigo: 11)
+        'FUNDO GF FGTS VALE DO RIO DOCE'          : 123724 , #123724 (antigo: 12)
         'FUNDO GF DUQUE DE CAXIAS'                : 23800  ,
         'FUNDO GERACAO PROGRAMADO FIA'            : 152384 ,
         'FUNDO GF FIA MENINAS IRADAS'             : 156878 ,
@@ -44,11 +44,14 @@ class Fundo(object):
         params['dataInicio']        = initialDate.strftime('%d/%m/%Y')
         params['dataFim']           = endDate.strftime('%d/%m/%Y')
         
-        parser.getPage(self.fundpage, params)
-        prices = parser.parsePage()
-        
-        self.prices.update(prices)
-        
+        try:
+            parser.getPage(self.fundpage, params)
+            prices = parser.parsePage()
+            self.prices.update(prices)
+            
+            return True
+        except:
+            return False
 
     def updateToday(self):
 
