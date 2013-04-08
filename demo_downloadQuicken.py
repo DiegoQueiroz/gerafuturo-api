@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from __future__ import print_function
 from GF_fundo import Fundo
 from datetime import date, timedelta
 from csv import writer as csvwriter
@@ -27,16 +28,25 @@ if __name__ == '__main__':
 
         arqcsv = csvwriter(f, delimiter=csv_delimiter,quotechar=quote_char)
 
-        for idfundo in Fundo.FUNDS:
+        fundsToDownload = (
+          'FUNDO GERACAO DIVIDENDOS FIA',
+          'FUNDO GERACAO FIC DE FI REFERENCIADO DI',
+          'FUNDO GERACAO PROGRAMADO FIA',
+        )
+
+        for idfundo in fundsToDownload:
+        
+            print("Downloading %-40s... " % ( idfundo ),end='')
         
             fundoatual = Fundo(idfundo)
-            fundoatual.updatePrices(iniDate, endDate)        
-            fundoatual.updateToday()    
-            
-            data = [ ( [ 'GF_' + str(Fundo.FUNDS[idfundo]), qdate.strftime("%d/%m/%Y"), qvalue, qvolume] )
-                    for qdate,(qvalue,qvolume) in fundoatual.prices.items() ]
-            
-            arqcsv.writerows(data)
+            if fundoatual.updatePrices(iniDate, endDate):        
+                fundoatual.updateToday()    
                 
-            print("Download %s successful!" % ( idfundo ))
-        
+                data = [ ( [ 'GF_' + str(Fundo.FUNDS[idfundo]), qdate.strftime("%d/%m/%Y"), qvalue, qvolume] )
+                        for qdate,(qvalue,qvolume) in fundoatual.prices.items() ]
+                
+                arqcsv.writerows(data)
+                    
+                print("success!")
+            else:
+                print("ERROR!")
