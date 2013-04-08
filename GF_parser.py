@@ -4,6 +4,8 @@ from xml.dom.minidom import parseString
 from datetime import datetime
 from urllib2 import urlopen
 from urllib import urlencode
+from sys import getdefaultencoding
+
 
 class Parser(object):
     '''
@@ -36,6 +38,13 @@ class Parser(object):
         # Get encoding and decode page
         encoding = pageref.headers['Content-type'].split('charset=')[1]
         self.page = self.page.decode(encoding)
+        
+        # Remove special chars, if not supported by the default encoding
+        # This setting may break some chars, but will prevent unwanted exceptions to happen
+        # depending of the environment
+        # The default encoding is not changed because it is not recommended by Python community,
+        # and may break things.        
+        self.page = self.page.encode(getdefaultencoding(), 'replace')
         
         # Remove comments
         self.page = self.page.replace('<!--','').replace('-->','')
